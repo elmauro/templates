@@ -1,0 +1,31 @@
+<br/>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary" href="#/areas/new">Create Area</a>
+        <h3 class="block">Areas</h3>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            <tr ng-hide="areas.length" >
+                <td colspan="5">No areas found, Please create one.</td>
+            </tr>
+            <div>
+              <label class="control-label col-md-3">Application</label>
+              <select ng-model="application" ng-options="application.name for application in applications">
+                <option value="">Select one</option>
+              </select>
+            </div>
+            </br>
+            <tr ng-show="areas.length" ng-repeat="area in areas | filter:{ 'application_id': application.id }:true">
+                <td>{{area.name}}</td>
+                <td>{{area.description}}</td>
+                <td>
+                    <a href="#/areas/{{area.id}}/edit">Edit</a> | <a href="" ng-click="deleteArea(area.id)">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

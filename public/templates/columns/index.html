@@ -1,0 +1,31 @@
+<br/>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary" href="#/columns/new">Create Column</a>
+        <h3 class="block">Columns</h3>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            <tr ng-hide="columns.length" >
+                <td colspan="5">No columns found, Please create one.</td>
+            </tr>
+            <div>
+              <label class="control-label col-md-3">Table</label>
+              <select ng-model="table" ng-options="table.name for table in tables">
+                <option value="">Select one</option>
+              </select>
+            </div>
+            </br>
+            <tr ng-show="columns.length" ng-repeat="column in columns | filter:{ 'table_id': table.id }:true">
+                <td>{{column.name}}</td>
+                <td>{{column.description}}</td>
+                <td>
+                    <a href="#/columns/{{column.id}}/edit">Edit</a> | <a href="" ng-click="deleteColumn(column.id)">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

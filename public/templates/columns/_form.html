@@ -1,0 +1,35 @@
+<div class="form-group" ng-class="{'has-error' : submitted && columnForm.name.$invalid}">
+    <label class="control-label col-md-3">Name <span class="required">* </span> </label>
+    <div class="col-md-4">
+        <input type="text" name="name" class="form-control" ng-model="column.name" required placeholder="name"/>
+    </div>
+    <div class="messages" ng-messages="columnForm.name.$error" ng-if="submitted">
+      <div class="help-block" ng-message="required">* Name is required.</div>
+    </div>
+</div>
+<div class="form-group" ng-class="{'has-error' : submitted && columnForm.description.$invalid}">
+    <label class="control-label col-md-3">Description <span class="required">* </span> </label>
+    <div class="col-md-4">
+        <input type="text" name="description" class="form-control" ng-model="column.description" required placeholder="description"/>
+    </div>
+    <div class="messages" ng-messages="columnForm.description.$error" ng-if="submitted">
+      <div class="help-block" ng-message="required">* Description is required.</div>
+    </div>
+</div>
+<div class="form-group" ng-class="{'has-error' : submitted && columnForm.table_id.$invalid}">
+    <label class="control-label col-md-3">Table <span class="required">* </span> </label>
+    <div class="col-md-4">
+        <select name="table_id" ng-model="column.table_id" ng-options="table.name for table in tables" required placeholder="table_id">
+            <option value="">Select one</option>
+        </select>
+    </div>
+    <div class="messages" ng-messages="columnForm.table_id.$error" ng-if="submitted">
+      <div class="help-block" ng-message="required">* Table is required.</div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="pull-left">
+        <a class="btn btn-default" href="#/columns"> Back</a>
+        <button type="submit" class="btn btn-primary" ng-click="submitted=true">Submit</button>
+    </div>
+</div>

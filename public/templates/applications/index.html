@@ -1,0 +1,24 @@
+<br/>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary" href="#/applications/new">Create an Application</a>
+        <h3 class="block">Application</h3>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            <tr ng-hide="applications.length" >
+                <td colspan="5">No applications found, Please create one.</td>
+            </tr>
+            <tr ng-show="applications.length" ng-repeat="application in applications">
+                <td>{{application.name}}</td>
+                <td>{{application.description}}</td>
+                <td>
+                    <a href="#/applications/{{application.id}}/edit">Edit</a> | <a href="" ng-click="deleteApplication(application.id)">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @table.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @table.description %>
+</p>
+
+<p>
+  <strong>Tabular:</strong>
+  <%= @table.tabular %>
+</p>
+
+<p>
+  <strong>Template:</strong>
+  <%= @table.template_id %>
+</p>
+
+<p>
+  <strong>Table:</strong>
+  <%= @table.table_id %>
+</p>
+
+<%= link_to 'Edit', edit_table_path(@table) %> |
+<%= link_to 'Back', tables_path %>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="myapplication">
+<head>
+  <title>Templates</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="navbar navbar-deafult">
+<div class="navbar-inner">
+    <div class="container"> 
+        <a class="brand" href="#">Templates</a>
+        <ul class="nav">
+            <li class="divider-vertical"></li>
+            <li data-match-route="/?(navbar)?"><a href="#/">Home</a></li>
+            <li class="dropdown"> 
+                <a href="#" class="dropdown-toggle">Configuration<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li data-match-route="/users"><a href="#/users">Users</a></li>
+                    <li data-match-route="/applications"><a href="#/applications">Applications</a></li>
+                    <li data-match-route="/areas"><a href="#/areas">Areas</a></li>
+                    <li data-match-route="/tables"><a href="#/tables">Tables</a></li>
+                    <li data-match-route="/columns"><a href="#/columns">Columns</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+<div class="container" ng-view>
+ <%= yield %>
+</div>
+
+</body>
+</html>

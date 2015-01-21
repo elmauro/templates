@@ -1,0 +1,162 @@
+- La generación de plantillas implica el envío de parámetros para hacer las cosultas necesarias
+- Las plantillas tienen filtros (un filtro es un campo de una tabla de la base de datos)
+
+- debe haber una relación entre los parámetros y los filtros para hacer las cosultas de información
+
+- Se obtiene el código html de la plantilla (encabezado, contenido, pie de página)
+- Se obtinenen todas las columnas de todas las tablas relacionadas con una plantilla y su valor
+
+- La información de una tabla se puede dibujar de forma tabular o no:
+
+	-- tabular: quiere decir que la tabla será dibujada en forma tabular
+		
+		- se recuperan todas las columnas de la tabla y se crea una etiqueta de la forma {{TAB.[tabla].columna}} por 
+		  cada columna de la tabla. Además se hace una consulta dinámica que obtiene toda la información de la tabla.
+
+
+	-- No tabular: la información de una tabla puede ser detalle de otra tabla o no:
+
+		- detalle: se recuperan todas las columnas de la tabla y se crea una etiqueta de la forma {{DET.[tabla].columna}}  
+		           por cada columna de la tabla. Además se hace una consulta dinámica que obtiene toda la información de la tabla.
+
+		- No detalle: se recuperan todas las columnas de la tabla y se crea una etiqueta de la forma 
+		              {{[tabla].columna}} por cada columna de la tabla. Además se hace una consulta dinámica que obtiene toda la información de la tabla.
+
+- Se remplaza el código html de la plantilla mapeado con la lista de etiquetas generadas y sus respectivos valores según 
+  sea tabular, detalle o no detalle.
+
+
+
+Para todas las vistas:
+
+1. si la vista es tabular:
+	a. se guarda la tabla en una variable
+	b. se obtienen todos los datos de esa tabla
+		
+		Consecutivo		Tabla 	Columna 		Valor 						Etiqueta
+  		1				User	first_name		Mauricio					{{TAB.[User].firs_name}}
+  		1				User	last_name		Cadavid						{{TAB.[User].last_name}}
+  		1				User	email			elmauro@gmail.com 			{{TAB.[User].email_name}}
+  		1				User	phone			3116344194 					{{TAB.[User].phone_name}}
+
+  	c. se crea una etiqueta por cada dato obtenido de la forma {{TAB.[tabla].columna}}
+  	d. se guarda la etiqueta en una propiedad llamada etiqueta
+	e. se guardan todos los datos obtenidos con sus etiquetas en una propiedad de la variable llamada tabular
+	f. se almacena la variable en una lista de objetos
+
+
+2. de lo contrario:
+	a. se obtienen todas las tablas detalle de la tabla
+	b. se obtienen todos los datos la tabla 
+		Consecutivo		Tabla 	Columna 		Valor 						Etiqueta
+  		1				User	first_name		Mauricio					{{[User].firs_name}}
+  		1				User	last_name		Cadavid						{{[User].last_name}}
+  		1				User	email			elmauro@gmail.com 			{{[User].email}}
+  		1				User	phone			3116344194 					{{[User].phone}}
+
+	c. se crea una etiqueta por cada dato obtenido de la forma {{[tabla].columna}}
+	d. se crea un filtro por la primera columna de cada dato obtenido; servirá para filtrar la información de las tablas 
+	   detalle
+	e. por cada tabla detalle se obtienen todos los datos la tabla detalle usando el filtro anterior
+	f. se crea una etiqueta por cada dato obtenido de la forma {{DET.[tabla].columna}}
+	g. se guarda la etiqueta en una propiedad llamada etiqueta
+	h. se guardan todos los datos obtenidos con sus etiquetas en una propiedad de la variable llamada detalle
+	i. se almacena la variable en una lista de objetos
+
+
+Remplazar las etiquetas con sus valores en el código html
+
+Por cada objeto de la lista de objetos:
+
+1. si existe una etiqueta en el objeto remplace en el código html la etiqueta por el valor
+
+2. si el objeto tiene detalles, por cada objeto detalle si existe una etiqueta, almacene la etiqueta y el valor en un 
+   diccionario. Luego recorra el diccionario y remplace en el código html cada una de las etiqueta por el valor de la etiqueta.
+
+3. si el objeto tiene tabular, por cada objeto tabular si existe una etiqueta, almacene la etiqueta y el valor en un 
+   diccionario. Luego recorra el diccionario y remplace en el código html cada una de las etiqueta por el valor de la etiqueta.
+
+4. añada al código html un nuevo template (html) para continuar con el siguiente objeto de la lista de objetos
+
+
+Rails with rack support
+unicorn application server
+nginx static content and slow clients (mem cache support)
+git
+grit (git from ruby)
+smoke (comunicate http servers with git servers)
+chimney
+proxymachine
+ssh
+jobs (resque)
+solr
+postgreSQL
+memcached
+ajax
+nagios
+sinatra
+ci joe (integration test)
+
+
+tables = [
+  {
+    "id": 2,
+    "name": "User",
+    "description": "System Users",
+    "tabular": null,
+    "template_id": null,
+    "table_id": null,
+    "url": "http://localhost:3000/tables/2.json"
+  },
+  {
+    "id": 3,
+    "name": "Sales",
+    "description": "User Sales",
+    "tabular": null,
+    "template_id": null,
+    "table_id": null,
+    "url": "http://localhost:3000/tables/3.json"
+  }
+]
+
+users = [
+  {
+    "id": 5,
+    "first_name": "Mauricio",
+    "last_name": "Cadavid Pérez",
+    "email": "elmauro@gmail.com",
+    "phone": "3116344194",
+    "created_at": "2015-01-07T19:51:24.761Z",
+    "updated_at": "2015-01-07T19:52:15.184Z"
+  },
+  {
+    "id": 9,
+    "first_name": "Alejandro",
+    "last_name": "Cadavid",
+    "email": "alejo.cadavid@gmail.com",
+    "phone": "3718665",
+    "created_at": "2015-01-20T20:37:05.087Z",
+    "updated_at": "2015-01-20T20:37:05.087Z"
+  }
+]
+
+properties = Object.getOwnPropertyNames(users[0])
+
+users[0][tables[0].name + '_' + properties[0]] = users[0][properties[0]]
+users[0][tables[0].name + '_' + properties[1]] = users[0][properties[1]]
+users[0][tables[0].name + '_' + properties[2]] = users[0][properties[2]]
+users[0][tables[0].name + '_' + properties[3]] = users[0][properties[3]]
+users[0][tables[0].name + '_' + properties[4]] = users[0][properties[4]]
+users[0][tables[0].name + '_' + properties[5]] = users[0][properties[5]]
+
+delete users[0][properties[0]];
+delete users[0][properties[1]];
+delete users[0][properties[2]];
+delete users[0][properties[3]];
+delete users[0][properties[4]];
+delete users[0][properties[5]];
+  
+
+
+
+ 

@@ -1,0 +1,25 @@
+<br/>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary" href="#/tables/new">Create Table</a>
+        <h3 class="block">Tables</h3>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            <tr ng-hide="tables.length" >
+                <td colspan="5">No tables found, Please create one.</td>
+            </tr>
+            </br>
+            <tr ng-show="tables.length" ng-repeat="table in tables">
+                <td>{{table.name}}</td>
+                <td>{{table.description}}</td>
+                <td>
+                    <a href="#/tables/{{table.id}}/edit">Edit</a> | <a href="" ng-click="deleteTable(table.id)">Remove</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

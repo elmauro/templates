@@ -1,0 +1,35 @@
+<div class="form-group" ng-class="{'has-error' : submitted && areaForm.name.$invalid}">
+    <label class="control-label col-md-3">Name <span class="required">* </span> </label>
+    <div class="col-md-4">
+        <input type="text" name="name" class="form-control" ng-model="area.name" required placeholder="name"/>
+    </div>
+    <div class="messages" ng-messages="areaForm.name.$error" ng-if="submitted">
+      <div class="help-block" ng-message="required">* Name is required.</div>
+    </div>
+</div>
+<div class="form-group" ng-class="{'has-error' : submitted && areaForm.description.$invalid}">
+    <label class="control-label col-md-3">Description <span class="required">* </span> </label>
+    <div class="col-md-4">
+        <input type="text" name="description" class="form-control" ng-model="area.description" required placeholder="description"/>
+    </div>
+    <div class="messages" ng-messages="areaForm.description.$error" ng-if="submitted">
+      <div class="help-block" ng-message="required">* Description is required.</div>
+    </div>
+</div>
+<div class="form-group" ng-class="{'has-error' : submitted && areaForm.application_id.$invalid}">
+    <label class="control-label col-md-3">Application <span class="required">* </span> </label>
+    <div class="col-md-4">
+        <select name="application_id" ng-model="area.application_id" ng-options="application.name for application in applications" required placeholder="application_id">
+            <option value="">Select one</option>
+        </select>
+    </div>
+    <div class="messages" ng-messages="areaForm.application_id.$error" ng-if="submitted">
+      <div class="help-block" ng-message="required">* Application is required.</div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="pull-left">
+        <a class="btn btn-default" href="#/areas"> Back</a>
+        <button type="submit" class="btn btn-primary" ng-click="submitted=true">Submit</button>
+    </div>
+</div>
