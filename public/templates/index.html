@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>A Simple Page with CKEditor</title>
+        <!-- Make sure the path to CKEditor is correct. -->
+        <script src="../tools/ckeditor/ckeditor.js"></script>
+        <script src="../tools/ckeditor/plugins/data/dialogs/commons.js"></script>
+    </head>
+    <body>
+        <form>
+            <textarea name="editor1" id="editor1" rows="50" cols="80" style="height: 700px !important;">
+                <p>Medellin, 21 de Enero de 2015</p><p>Para: users_first_name users_last_name</p><p>De: Administraci&oacute;n</p><p>Asunto: Incremento en la cuota</p><p>Con la entrada en vigor del a&ntilde;o 2015, se incrementar&aacute; la couta menusal de administraci&oacute;n en $10.000 con el fin de regularizar la misma al incremento de precios al consumo que se hace efectiva a partir del 1 de enero de 2015</p><p>&nbsp;</p><p>&nbsp;</p><p>Manuel Garc&iacute;a</p><p>Administrador&nbsp;&nbsp;</p>
+            </textarea>
+            <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'editor1' );
+            </script>
+        </form>
+    </body>
+</html>
