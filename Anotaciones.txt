@@ -99,6 +99,8 @@ ci joe (integration test)
 
 
 http://mrrio.github.io/jsPDF/examples/basic.html
+http://postimg.org/image/4uwvqq6eh/137eb05a/
+
 
 
 tables = personal_templates_commons.getTables()

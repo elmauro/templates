@@ -73,7 +73,7 @@ myApp.config([
       controller: "UserUpdateCtr"
     });
     $routeProvider.otherwise({
-      redirectTo: '/users'
+      templateUrl: '/templates/index.html',
     });
   }
 ]);

@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   resources :users
 
+  resources :tables do
+    resources :columns
+  end
+
   root 'applications#index'
 
   #match 'tables', to: 'tables#options', via: [:options]#, :defaults => { :format => 'json' }

@@ -4,7 +4,7 @@ personal_templates_commons.getTables = function()
 {
 	var tables;
 	$.ajax({
-		url: "http://localhost:3000/tables.json",
+		url: "http://10.3.9.216:3000/tables.json",
 		dataType: "json",
 		type: "GET",
 		async: false,
@@ -21,7 +21,7 @@ personal_templates_commons.getAllRows = function(tables)
 	tables.forEach(function(table) {
 		var table_name = table.name;
 	    $.ajax({
-			url: "http://localhost:3000/" + table_name + ".json",
+			url: "http://10.3.9.216:3000/" + table_name + ".json",
 			dataType: "json",
 			type: "GET",
 			async: false,
