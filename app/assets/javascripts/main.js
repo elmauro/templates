@@ -1,4 +1,4 @@
-var myApp = angular.module('myapplication', ['ngRoute', 'ngResource','ui.bootstrap', 'ngMessages']); 
+var myApp = angular.module('myapplication', ['ngRoute', 'ngResource','ui.bootstrap', 'ngMessages', 'ngFileUpload']); 
 
 function HeaderController($scope, $location) 
 { 

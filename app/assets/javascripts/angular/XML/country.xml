@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<inscription name="dynamic UI">
+  <properties
+    entity ="country"
+    description ="Country" >
+  </properties>
+
+  <control name="idCountry" 
+           description="ID" 
+           type="texto"/>
+  
+  <control name="strName" 
+           description="Name" 
+           type="texto"/>
+  
+  <control name="strCode" 
+           description="Code" 
+           type="texto"/>
+</inscription>

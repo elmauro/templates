@@ -41,3 +41,5 @@ gem 'spring',        group: :development
 gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
 gem 'bootstrap-sass'
+
+gem 'sendgrid-ruby'

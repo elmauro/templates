@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  before_action :get_user, except: [:index, :create]
+  before_action :get_user, except: [:index, :create, :send_email]
   respond_to :html, :json
+
+  require 'sendgrid-ruby'
 
   def index
     @user = User.all
@@ -33,6 +35,24 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    render json: {status: :ok}
+  end
+
+  def send_email
+    @user = User.where(email: params[:email]).first
+
+    client = SendGrid::Client.new(api_user: 'elmauro78', api_key: 'Maurici*c1978')
+
+    email = SendGrid::Mail.new do |m|
+      m.to      = @user.email
+      m.from    = 'mauricio.cadavid@yuxipacific.com'
+      m.subject = 'Testing Templates Application'
+      m.html    = 'and easy to do anywhere, even with Ruby'
+      m.add_attachment('/Users/mauricio.cadavid/Downloads/' + @user.email + '.pdf', @user.email + '.pdf')
+    end
+
+    client.send(email)
+
     render json: {status: :ok}
   end
 

@@ -4,7 +4,7 @@ CKEDITOR_commons.getTables = function()
 {
 	var tables;
 	$.ajax({
-		url: "http://10.3.9.216:3000/tables.json",
+		url: "http://127.0.0.1:3000/tables.json",
 		dataType: "json",
 		type: "GET",
 		async: false,
@@ -19,7 +19,7 @@ CKEDITOR_commons.getColumns = function(table_id)
 {
 	var columns;
 	$.ajax({
-		url: "http://10.3.9.216:3000/tables/" + table_id + "/columns.json",
+		url: "http://127.0.0.1:3000/tables/" + table_id + "/columns.json",
 		dataType: "json",
 		type: "GET",
 		async: false,

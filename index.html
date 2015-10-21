@@ -1,20 +1,49 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>A Simple Page with CKEditor</title>
-        <!-- Make sure the path to CKEditor is correct. -->
-        <script src="tools/ckeditor/ckeditor.js"></script>
+        <title>A Simple Page with Templates</title>
+        
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/styles/application.min.css">
+        <link rel="stylesheet" href="//static.jstree.com/latest/assets/dist/themes/default/style.min.css">
+
     </head>
     <body>
+        <script>
+            app.Render.xml2Html(
+                'assets/angular/XML/country.xml',
+                'assets/angular/plugins/crud/xslt/CRUD.xslt',
+                'component1'
+            );
+
+            app.Render.xml2Html(
+                'assets/angular/XML/country.xml',
+                'assets/angular/plugins/grid/xslt/GRID.xslt',
+                'component2'
+            );
+
+            app.Render.xml2Html(
+                'assets/angular/XML/enterprise.xml',
+                'assets/angular/plugins/crud/xslt/CRUD.xslt',
+                'component3'
+            );
+
+            app.Render.xml2Html(
+                'assets/angular/XML/enterprise.xml',
+                'assets/angular/plugins/grid/xslt/GRID.xslt',
+                'component4'
+            );
+        </script>
         <form>
-            <textarea name="editor1" id="editor1" rows="10" cols="80">
-                This is my textarea to be replaced with CKEditor.
-            </textarea>
-            <script>
-                // Replace the <textarea id="editor1"> with a CKEditor
-                // instance, using default configuration.
-                CKEDITOR.replace( 'editor1' );
-            </script>
+            <div ng-controller="countryController">
+                <div id="component1" class="col-md-12 col-xs-12 col-sm-12" />
+                <div id="component2" class="col-md-12 col-xs-12 col-sm-12" />
+            </div>
+            <div ng-controller="enterpriseController">
+                <div id="component3" class="col-md-12 col-xs-12 col-sm-12" />
+                <div id="component4" class="col-md-12 col-xs-12 col-sm-12"/>
+            </div>
         </form>
     </body>
 </html>

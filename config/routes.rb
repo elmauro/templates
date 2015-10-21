@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   root 'applications#index'
 
+  get 'send_email' => 'users#send_email'
+
   #match 'tables', to: 'tables#options', via: [:options]#, :defaults => { :format => 'json' }
   #match 'tables', to: 'tables#options', via: [:options]#, :defaults => { :format => 'json' }
   

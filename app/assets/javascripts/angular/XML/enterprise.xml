@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<inscription nombre="interfaz dinamica">
+  <properties
+    entity ="enterprise"
+    description ="Enterprise" >
+  </properties>
+
+  <control name="idEnterprise"
+           description="ID"
+           type="text"/>
+
+  <control name="strCodeNumber"
+           description="Code Number"
+           type="text"/>
+
+  <control name="strName"
+           description="Name"
+           type="text"/>
+</inscription>

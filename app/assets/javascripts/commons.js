@@ -4,7 +4,7 @@ personal_templates_commons.getTables = function()
 {
 	var tables;
 	$.ajax({
-		url: "http://10.3.9.216:3000/tables.json",
+		url: "http://127.0.0.1:3000/tables.json",
 		dataType: "json",
 		type: "GET",
 		async: false,
@@ -21,7 +21,7 @@ personal_templates_commons.getAllRows = function(tables)
 	tables.forEach(function(table) {
 		var table_name = table.name;
 	    $.ajax({
-			url: "http://10.3.9.216:3000/" + table_name + ".json",
+			url: "http://127.0.0.1:3000/" + table_name + ".json",
 			dataType: "json",
 			type: "GET",
 			async: false,
@@ -48,14 +48,20 @@ personal_templates_commons.combineAllRows = function(allrows, template)
 	allrows.forEach(function(rows) {
 		var properties = Object.getOwnPropertyNames(rows[0])
 		rows.forEach(function(row) {
-			var combinedRow = template
+			var combinedRow = {'data':'', 'email':''};
+			combinedRow.data = template
 			var combined = false;
 		
 			properties.forEach(function(property) {
-				if(combinedRow.indexOf(property) > -1)
+				if(property.indexOf('email') > -1)
+				{
+					combinedRow.email = row[property];
+				}
+
+				if(combinedRow.data.indexOf(property) > -1)
 				{
 					combined = true;
-					combinedRow = combinedRow.replace(property,row[property])
+					combinedRow.data = combinedRow.data.replace(property,row[property])
 				}
 			});
 
@@ -74,7 +80,7 @@ personal_templates_commons.createPDF = function(combinedRows)
 
 		// source can be HTML-formatted string, or a reference
 		// to an actual DOM element from which the text will be scraped.
-		, source = combinedRow
+		, source = combinedRow.data
 
 		// we support special element handlers. Register them with jQuery-style
 		// ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
@@ -107,7 +113,33 @@ personal_templates_commons.createPDF = function(combinedRows)
 		  	function (dispose) {
 		  	  // dispose: object with X, Y of the last line add to the PDF
 		  	  //          this allow the insertion of new lines after html
-		        pdf.save('Test.pdf');
+		        var data = pdf.output();
+				var buffer = new ArrayBuffer(data.length);
+				var array = new Uint8Array(buffer);
+
+				for (var i = 0; i < data.length; i++) {
+				    array[i] = data.charCodeAt(i);
+				}
+
+				var blob = new Blob(
+				    [array],
+				    {type: 'application/pdf', encoding: 'raw'}
+				);
+
+				pdf.save(combinedRow.email + '.pdf');
+
+				setTimeout(function(){ 
+			        $.ajax({
+					url: "http://localhost:3000/send_email/?email=" + combinedRow.email,
+					dataType: "json",
+					type: "GET",
+					async: false,
+					success: function(data) {
+						console.log('bien')
+					}
+				});
+			    }, 2000);  
+
 		      },
 		  	margins
 		  )

@@ -26,6 +26,18 @@
   sea tabular, detalle o no detalle.
 
 
+Productos conocidos:
+
+1. http://www.evermap.com/automailmerge.asp. No permite maestro - detalle
+
+2. http://www.avery.com/avery/en_us/Help-Center/General-Help/How-to-Mail-Merge-using-Avery-Design--Print-Online.htm. No permite maestro - detalle
+
+3. https://www.webmerge.me/
+
+4. http://www.pdfmachine.com/pdfmachine_merge/
+
+5. http://www.edocbuilder.com/page/w2p-design-template-variable-data-publishing
+
 
 Para todas las vistas:
 
